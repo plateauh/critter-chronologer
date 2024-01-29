@@ -61,4 +61,25 @@ public class PetDTO {
     public void setId(long id) {
         this.id = id;
     }
+
+    public static Pet mapToEntity(PetDTO dto) {
+        Pet entity = new Pet();
+        entity.setId(dto.getId());
+        entity.setName(dto.getName());
+        entity.setType(dto.getType());
+        entity.setBirthDate(dto.getBirthDate());
+        entity.setNotes(dto.getNotes());
+        return entity;
+    }
+
+    public static PetDTO mapToDto(Pet entity) {
+        PetDTO dto = new PetDTO();
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+        dto.setType(entity.getType());
+        dto.setBirthDate(entity.getBirthDate());
+        dto.setOwnerId(entity.getOwner().getId());
+        dto.setNotes(entity.getNotes());
+        return dto;
+    }
 }

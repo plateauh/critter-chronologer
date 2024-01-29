@@ -3,10 +3,7 @@ package com.udacity.jdnd.course3.critter.user.customer;
 import com.udacity.jdnd.course3.critter.pet.Pet;
 import com.udacity.jdnd.course3.critter.user.User;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -17,7 +14,7 @@ public class Customer extends User {
     private String phoneNumber;
     @Lob
     private String notes;
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Pet> owningPets;
 
     public String getPhoneNumber() {

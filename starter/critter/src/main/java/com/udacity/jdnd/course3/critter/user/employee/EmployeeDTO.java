@@ -44,4 +44,22 @@ public class EmployeeDTO {
     public void setDaysAvailable(Set<DayOfWeek> daysAvailable) {
         this.daysAvailable = daysAvailable;
     }
+
+    public static EmployeeDTO mapToDto(Employee entity) {
+        EmployeeDTO dto = new EmployeeDTO();
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+        dto.setSkills(entity.getSkills());
+        dto.setDaysAvailable(entity.getDaysAvailable());
+        return dto;
+    }
+
+    public static Employee mapToEntity(EmployeeDTO dto) {
+        Employee entity = new Employee();
+        entity.setId(dto.getId());
+        entity.setName(dto.getName());
+        entity.setSkills(dto.getSkills());
+        entity.setDaysAvailable(dto.getDaysAvailable());
+        return entity;
+    }
 }

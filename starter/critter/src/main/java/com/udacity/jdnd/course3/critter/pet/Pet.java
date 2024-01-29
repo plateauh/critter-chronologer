@@ -1,7 +1,7 @@
 package com.udacity.jdnd.course3.critter.pet;
 
+import com.udacity.jdnd.course3.critter.schedule.Schedule;
 import com.udacity.jdnd.course3.critter.user.customer.Customer;
-import com.udacity.jdnd.course3.critter.user.employee.Employee;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -24,11 +24,14 @@ public class Pet {
 
     private LocalDate birthDate;
 
+    @Lob
+    private String notes;
+
     @ManyToOne
     private Customer owner;
 
     @ManyToMany(mappedBy = "pets")
-    private List<Employee> employees;
+    private List<Schedule> scheduleList;
 
     public Long getId() {
         return id;
@@ -70,11 +73,19 @@ public class Pet {
         this.owner = owner;
     }
 
-    public List<Employee> getEmployees() {
-        return employees;
+    public List<Schedule> getScheduleList() {
+        return scheduleList;
     }
 
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
+    public void setScheduleList(List<Schedule> scheduleList) {
+        this.scheduleList = scheduleList;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 }

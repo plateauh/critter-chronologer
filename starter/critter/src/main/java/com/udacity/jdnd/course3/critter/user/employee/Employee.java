@@ -1,6 +1,6 @@
 package com.udacity.jdnd.course3.critter.user.employee;
 
-import com.udacity.jdnd.course3.critter.pet.Pet;
+import com.udacity.jdnd.course3.critter.schedule.Schedule;
 import com.udacity.jdnd.course3.critter.user.User;
 
 import javax.persistence.ElementCollection;
@@ -21,8 +21,8 @@ public class Employee extends User {
     @ElementCollection
     private Set<DayOfWeek> daysAvailable;
 
-    @ManyToMany
-    private List<Pet> pets;
+    @ManyToMany(mappedBy = "employees")
+    private List<Schedule> scheduleList;
 
     public Set<EmployeeSkill> getSkills() {
         return skills;
@@ -40,11 +40,11 @@ public class Employee extends User {
         this.daysAvailable = daysAvailable;
     }
 
-    public List<Pet> getPets() {
-        return pets;
+    public List<Schedule> getScheduleList() {
+        return scheduleList;
     }
 
-    public void setPets(List<Pet> pets) {
-        this.pets = pets;
+    public void setScheduleList(List<Schedule> scheduleList) {
+        this.scheduleList = scheduleList;
     }
 }

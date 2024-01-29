@@ -1,6 +1,9 @@
 package com.udacity.jdnd.course3.critter.user.customer;
 
+import com.udacity.jdnd.course3.critter.pet.Pet;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Represents the form that customer request and response data takes. Does not map
@@ -52,4 +55,25 @@ public class CustomerDTO {
     public void setPetIds(List<Long> petIds) {
         this.petIds = petIds;
     }
+
+    public static CustomerDTO mapToDto(Customer entity) {
+        CustomerDTO dto = new CustomerDTO();
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+        dto.setPhoneNumber(entity.getPhoneNumber());
+        dto.setNotes(entity.getNotes());
+        if (entity.getOwningPets() != null && !entity.getOwningPets().isEmpty())
+            dto.setPetIds(entity.getOwningPets().stream().map(Pet::getId).collect(Collectors.toList()));
+        return dto;
+    }
+
+    public static Customer mapToEntity(CustomerDTO dto) {
+        Customer entity = new Customer();
+        entity.setId(dto.getId());
+        entity.setName(dto.getName());
+        entity.setPhoneNumber(dto.getPhoneNumber());
+        entity.setNotes(dto.getNotes());
+        return entity;
+    }
+
 }
